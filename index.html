@@ -103,21 +103,24 @@
 
 <body>
 
-    <!-- Hidden form that sends emails -->
-    <form id="notifyForm" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
+    <!-- Background romantic piano music -->
+    <audio autoplay loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b3c7b2f3d.mp3?filename=romantic-piano-ambient-110624.mp3" type="audio/mp3">
+    </audio>
 
-        <!-- Email YOU receive -->
+    <!-- FORM 1: Email for YOU -->
+    <form id="notifyFormYou" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
         <input type="hidden" name="message" value="Alguien hizo clic en SÍ ❤️">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_redirect" value="https://shblm.github.io/isa/">
+    </form>
 
-        <!-- Email SHE receives -->
-        <input type="hidden" name="_cc" value="f7legend1985@gmail.com">
+    <!-- FORM 2: Email for HER -->
+    <form id="notifyFormHer" action="https://formsubmit.co/f7legend1985@gmail.com" method="POST" style="display:none;">
         <input type="hidden" name="_subject" value="Su cita ha sido confirmada ❤️">
         <input type="hidden" name="_autoresponse" value="Su cita ha sido confirmada.\nPrepárese para un momento especial.\nMuy pronto recibirá más detalles.">
-
-        <!-- Configuración -->
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_redirect" value=".">
-
+        <input type="hidden" name="_redirect" value="https://shblm.github.io/isa/">
     </form>
 
     <div id="mainScreen">
@@ -172,8 +175,13 @@
 
         yesBtn.addEventListener("click", () => {
 
-            // Send notification email
-            document.getElementById("notifyForm").submit();
+            // Send YOUR email immediately
+            document.getElementById("notifyFormYou").submit();
+
+            // Send HER email after 2 seconds
+            setTimeout(() => {
+                document.getElementById("notifyFormHer").submit();
+            }, 2000);
 
             // Show confirmation screen
             mainScreen.style.display = "none";
