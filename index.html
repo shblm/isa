@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín?</title>
+
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background: #ffe6ea;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .big-text {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #d6336c;
+        }
+
+        .medium-text {
+            font-size: 2.2rem;
+            margin-top: 10px;
+            color: #d6336c;
+        }
+
+        .tiny-text {
+            font-size: 0.7rem;
+            margin-top: 5px;
+            color: #b52d57;
+        }
+
+        #buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            position: relative;
+            height: 60px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            z-index: 10;
+            transform-origin: center;
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: relative;
+            z-index: 5;
+        }
+
+        #messageScreen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #messageScreen p {
+            font-size: 1.6rem;
+            color: #d6336c;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hidden form that sends you an email -->
+    <form id="notifyForm" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
+        <input type="hidden" name="message" value="Someone clicked YES ❤️">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_redirect" value=".">
+    </form>
+
+    <div id="mainScreen">
+        <div class="big-text">¿Quieres ser mi Valentín???</div>
+        <div class="medium-text">Si dices que sí, me haces el día</div>
+        <div class="tiny-text">(si dices que no… pues pregunto otra vez)</div>
+
+        <div id="buttons">
+            <button id="yesBtn">Sí 😍</button>
+            <button id="noBtn">No 😭</button>
+        </div>
+    </div>
+
+    <div id="messageScreen">
+        <p>Gracias por su elección, se llegará una confirmación oficial muy pronto ❤️</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const mainScreen = document.getElementById("mainScreen");
+        const messageScreen = document.getElementById("messageScreen");
+
+        let hasMoved = false;
+        let growFactor = 1;
+
+        function moveNoButton() {
+            const container = document.getElementById("buttons");
+
+            if (!hasMoved) {
+                noBtn.style.position = "absolute";
+                hasMoved = true;
+            }
+
+            const padding = 20;
+            const maxX = container.offsetWidth - noBtn.offsetWidth - padding;
+            const x = Math.random() * maxX + padding / 2;
+
+            const minY = -20;
+            const maxY = 0;
+            const y = Math.random() * (maxY - minY) + minY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            growFactor += 0.1;
+            yesBtn.style.transform = `scale(${growFactor})`;
+        }
+
+        noBtn.addEventListener("mouseover", moveNoButton);
+        noBtn.addEventListener("touchstart", moveNoButton);
+
+        yesBtn.addEventListener("click", () => {
+
+            // Send notification email
+            document.getElementById("notifyForm").submit();
+
+            // Show confirmation screen
+            mainScreen.style.display = "none";
+            messageScreen.style.display = "flex";
+        });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+
+</body>
+</html>
