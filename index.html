@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isa<3</title>
 
-    <!-- WhatsApp preview -->
     <meta property="og:title" content="isa">
     <meta property="og:description" content="Haz clic aquí">
     <meta property="og:type" content="website">
@@ -103,25 +102,10 @@
 
 <body>
 
-    <!-- Background romantic piano music -->
-    <audio autoplay loop>
+    <!-- Music (starts muted) -->
+    <audio id="bgMusic" autoplay loop muted>
         <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b3c7b2f3d.mp3?filename=romantic-piano-ambient-110624.mp3" type="audio/mp3">
     </audio>
-
-    <!-- FORM 1: Email for YOU -->
-    <form id="notifyFormYou" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
-        <input type="hidden" name="message" value="Alguien hizo clic en SÍ ❤️">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_redirect" value="https://shblm.github.io/isa/">
-    </form>
-
-    <!-- FORM 2: Email for HER -->
-    <form id="notifyFormHer" action="https://formsubmit.co/f7legend1985@gmail.com" method="POST" style="display:none;">
-        <input type="hidden" name="_subject" value="Su cita ha sido confirmada ❤️">
-        <input type="hidden" name="_autoresponse" value="Su cita ha sido confirmada.\nPrepárese para un momento especial.\nMuy pronto recibirá más detalles.">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_redirect" value="https://shblm.github.io/isa/">
-    </form>
 
     <div id="mainScreen">
         <div class="big-text">Quieres ser mi Valentin???</div>
@@ -143,6 +127,7 @@
         const noBtn = document.getElementById("noBtn");
         const mainScreen = document.getElementById("mainScreen");
         const messageScreen = document.getElementById("messageScreen");
+        const music = document.getElementById("bgMusic");
 
         let hasMoved = false;
         let growFactor = 1;
@@ -173,19 +158,35 @@
         noBtn.addEventListener("mouseover", moveNoButton);
         noBtn.addEventListener("touchstart", moveNoButton);
 
-        yesBtn.addEventListener("click", () => {
+        yesBtn.addEventListener("click", async () => {
 
-            // Send YOUR email immediately
-            document.getElementById("notifyFormYou").submit();
-
-            // Send HER email after 2 seconds
-            setTimeout(() => {
-                document.getElementById("notifyFormHer").submit();
-            }, 2000);
+            // Unmute music after user interaction
+            music.muted = false;
 
             // Show confirmation screen
             mainScreen.style.display = "none";
             messageScreen.style.display = "flex";
+
+            // Send YOUR email using fetch
+            fetch("https://formsubmit.co/ajax/bilalmukarram2008@gmail.com", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "Alguien hizo clic en Si ❤️"
+                })
+            });
+
+            // Send HER email after 2 seconds
+            setTimeout(() => {
+                fetch("https://formsubmit.co/ajax/f7legend1985@gmail.com", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        _subject: "Su cita ha sido confirmada ❤️",
+                        _autoresponse: "Su cita ha sido confirmada.\nPreparese para un momento especial.\nMuy pronto recibira mas detalles."
+                    })
+                });
+            }, 2000);
         });
 
         function createHeart() {
