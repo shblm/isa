@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isa<3</title>
-    <meta property="og:title" content="isa">
-<meta property="og:description" content="Haz clic aquí">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://shblm.github.io/isa/">
 
+    <!-- WhatsApp preview -->
+    <meta property="og:title" content="isa">
+    <meta property="og:description" content="Haz clic aquí">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shblm.github.io/isa/">
 
     <style>
         body {
@@ -21,20 +22,6 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
-            <form id="notifyForm" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
-    <!-- Email que recibes TÚ -->
-    <input type="hidden" name="message" value="Alguien hizo clic en SÍ ❤️">
-
-    <!-- Email que recibe ELLA -->
-    <input type="hidden" name="_cc" value="f7legend1985@gmail.com">
-    <input type="hidden" name="_subject" value="Su cita ha sido confirmada ❤️">
-    <input type="hidden" name="_autoresponse" value="Su cita ha sido confirmada.\nPrepárese para un momento especial.\nMuy pronto recibirá más detalles.">
-
-    <!-- Configuración -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_redirect" value=".">
-</form>
-
         }
 
         .big-text {
@@ -78,8 +65,6 @@
             color: white;
             z-index: 10;
             transform-origin: center;
-            document.getElementById("notifyForm").submit();
-
         }
 
         #noBtn {
@@ -118,11 +103,21 @@
 
 <body>
 
-    <!-- Hidden form that sends you an email -->
+    <!-- Hidden form that sends emails -->
     <form id="notifyForm" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
-        <input type="hidden" name="message" value="Someone clicked YES ❤️">
+
+        <!-- Email YOU receive -->
+        <input type="hidden" name="message" value="Alguien hizo clic en SÍ ❤️">
+
+        <!-- Email SHE receives -->
+        <input type="hidden" name="_cc" value="f7legend1985@gmail.com">
+        <input type="hidden" name="_subject" value="Su cita ha sido confirmada ❤️">
+        <input type="hidden" name="_autoresponse" value="Su cita ha sido confirmada.\nPrepárese para un momento especial.\nMuy pronto recibirá más detalles.">
+
+        <!-- Configuración -->
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_redirect" value=".">
+
     </form>
 
     <div id="mainScreen">
@@ -201,8 +196,3 @@
 
 </body>
 </html>
-
-
-
-
-
