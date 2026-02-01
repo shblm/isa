@@ -21,6 +21,20 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+            <form id="notifyForm" action="https://formsubmit.co/bilalmukarram2008@gmail.com" method="POST" style="display:none;">
+    <!-- Email que recibes TÚ -->
+    <input type="hidden" name="message" value="Alguien hizo clic en SÍ ❤️">
+
+    <!-- Email que recibe ELLA -->
+    <input type="hidden" name="_cc" value="f7legend1985@gmail.com">
+    <input type="hidden" name="_subject" value="Su cita ha sido confirmada ❤️">
+    <input type="hidden" name="_autoresponse" value="Su cita ha sido confirmada.\nPrepárese para un momento especial.\nMuy pronto recibirá más detalles.">
+
+    <!-- Configuración -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_redirect" value=".">
+</form>
+
         }
 
         .big-text {
@@ -64,6 +78,8 @@
             color: white;
             z-index: 10;
             transform-origin: center;
+            document.getElementById("notifyForm").submit();
+
         }
 
         #noBtn {
@@ -185,6 +201,7 @@
 
 </body>
 </html>
+
 
 
 
